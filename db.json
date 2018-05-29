@@ -1,0 +1,6 @@
+{
+	"server": "localhost",
+	"database": "emails", 
+	"user": "emails", 
+	"password": "emails_password"
+}
