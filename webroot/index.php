@@ -12,18 +12,22 @@
         if(filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
 
             $db = new DB();
-            $db->addEmail($_POST['email']);
-            $_POST = array();
+            if($db->addEmail($_POST['email'])) {
 
-            // For testing
-            //$db->getEmails();
+                $_POST = array();
 
-            $infoMsg = '<div class="alert alert-success" role="alert">E-mail address added into database.</div>';
+                // For testing
+                //$db->getEmails();
+
+                $infoMsg = '<div class="alert alert-success" role="alert">E-mail address added into database.</div>';
+
+            } else {
+                $errorMsg = '<div class="alert alert-danger" role="alert">An error occurred inserting e-mail address into database.</div>';
+            }
+
 
         } else {
-
             $errorMsg = '<div class="alert alert-danger" role="alert">Invalid e-mail address given.</div>';
-
         }
     }
 

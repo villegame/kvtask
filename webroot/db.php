@@ -38,12 +38,21 @@ class DB {
 
     public function addEmail($email) {
 
+        $returnValue = true;
+
         $sql = "INSERT INTO addresses (email) VALUES (?);";
 
         // Prepare statement (to avoid sql injections just in case)
         $stmt = $this->conn->prepare($sql);
         $stmt->bind_param("s", $email);
         $stmt->execute();
+
+        if ($stmt->error) $returnValue = false;
+        else $returnValue = true;
+
+        $stmt->close();
+
+        return $returnValue;
     }
 
     public function getEmails() {
