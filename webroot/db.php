@@ -21,7 +21,7 @@ class DB {
 
     }
 
-    function connect() {
+    private function connect() {
 
         // Connect to database
         $this->conn = new mysqli($this->dbConfigData["server"], $this->dbConfigData["user"], $this->dbConfigData["password"], $this->dbConfigData["database"]);
@@ -29,14 +29,14 @@ class DB {
 
     }
 
-    function disconnect() {
+    private function disconnect() {
 
         // Close connection
         $this->conn->close();
 
     }
 
-    function addEmail($email) {
+    public function addEmail($email) {
 
         $sql = "INSERT INTO addresses (email) VALUES (?);";
 
@@ -46,7 +46,7 @@ class DB {
         $stmt->execute();
     }
 
-    function getEmails() {
+    public function getEmails() {
 
         $sql = "SELECT email FROM addresses;";
         $result = $this->conn->query($sql);
