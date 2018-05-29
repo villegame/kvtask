@@ -6,7 +6,7 @@
     $errorMsg  = NULL;
 
     // Process POST-data
-    if ($_POST['email']) {
+    if (isset($_POST['email'])) {
 
         // Validate given e-mail address
         if(filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
@@ -55,7 +55,7 @@
                 <form method="POST">
                     <div class="form-group">
                         <label for="email">E-mail:</label>
-                        <input name="email" class="form-control" placeholder="Type e-mail address here" value="<?php print $_POST['email']; ?>">
+                        <input name="email" class="form-control" placeholder="Type e-mail address here" value="<?php if(isset($_POST['email'])) print $_POST['email']; ?>">
                     </div>
                     <button type="submit" class="btn btn-primary">Submit to database</button>
                 </form>
